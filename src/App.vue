@@ -1,28 +1,37 @@
-<template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
-</template>
+<template><div>
+  <HelloWorld :data="data" @update:data="data = $event"/>
+  <TestDocument ref="test">value<template #name="data"
+    > {{data}}</template></TestDocument>
+  <asdf v-model="input" :data.sync="input"/>
+  {{ data }} | {{ input }}
+  <router-link to="/music/data?data=music">music</router-link>
+  <a href="#/ruok"> ruok</a>
+  <Router-view></Router-view>
+</div></template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import TestDocument from './components/TestDocument.vue';
+import asdf from './components/asdf.vue';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  provide(){
+    return{
+      data:this.data
+    }
+  },
+  data() {
+    return {
+      data: 'Hello',
+      input:'input'
+    }
+  },
+  components:{TestDocument, asdf},
+  mounted(){
+    console.log('ref:'+this.$refs.test);
+    console.log(this.$store,this.$store.state.data)
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+
 </style>
