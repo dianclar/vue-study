@@ -3,8 +3,13 @@ const state = {
 }
 const mutations = {}
 const actions = {}
-const getters = {}
+const getters = {
+  userup(state){
+    return state.user + 'up'
+  }
+}
 export default {
+  namespaced:true,
   state,
   mutations,
   actions,

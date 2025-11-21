@@ -27,7 +27,7 @@ export default {
   components:{TestDocument, asdf},
   mounted(){
     console.log('ref:'+this.$refs.test);
-    console.log(this.$store,this.$store.state.data)
+    console.log(this.$store.getters['user/userup'],this.$store.state)
   }
 }
 </script>
