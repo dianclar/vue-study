@@ -515,13 +515,11 @@ npm i json-server -g
 ## 运行
 json-server index.json
 
-# axios
-请求工具
+# 请求封装
+将所有请求函数从页面中抽离并封装为模块
 
-## 安装
+## 安装axios
 npm i axios
-
-## 基本语法
 axios(
   {
     url，
@@ -534,6 +532,40 @@ axios(
 ).catch(
   e=>{}
 )
+
+## 配置实例
+src/utils目录下创建request.js
+
+import axios from 'axios'
+const instance = axios.create({
+  baseURL:,
+  timeout:,
+  headers:
+})
+instance.interceptors.request.use(
+  function (config) {
+    return config
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+instance.interceptors.response.use(
+  function (response) {
+    return response.data
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+export default instance
+
+##配置api模块
+src目录下创建api/*.js
+
+import request from '@/utils/request.js'
+export const getapi = data => request.get('/url',data)
+export const postapi = data => request.post('/url',data)
 
 # vant-ui
 移动端ui组件库
