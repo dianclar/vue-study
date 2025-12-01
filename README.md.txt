@@ -552,7 +552,11 @@ instance.interceptors.request.use(
 )
 instance.interceptors.response.use(
   function (response) {
-    return response.data
+    const res = response.data
+    if(res.status != 200){
+      return
+    }
+    return res
   },
   function (error) {
     return Promise.reject(error)
