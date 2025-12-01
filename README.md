@@ -503,6 +503,32 @@ Vuex.Store({
 通过$store.*['*/*']，$store.*.('*/*',*)访问
 通过...map*('*',['*'])映射
 
+## vuex持久化
+src/utils目录下创建storage.js
+export const getstorage = (key) => {
+  const data = localStorage.getItem(key)
+  return data ? JSON.parse(data) : data
+}
+export const setstorage = (key,obj) => {
+  localStorage.setItem(key,JSON.stringify(obj))
+}
+export const rmstorage = (key) => {
+  localStorage.removeItem(key)
+}
+
+import { getstorage,setstorage } from "@/utils/storage"
+const key = *
+const def = *
+const state = {
+    user:getstorage(key,def)
+}
+const mutations = {
+  setuser(state,data){
+    state.user = data
+    setstorage(key,data)
+  }
+}
+
 # json-server
 api接口服务工具
 
@@ -554,7 +580,7 @@ instance.interceptors.response.use(
   function (response) {
     const res = response.data
     if(res.status != 200){
-      return
+      return Promise.reject(res.message)
     }
     return res
   },
@@ -570,6 +596,31 @@ src目录下创建api/*.js
 import request from '@/utils/request.js'
 export const getapi = data => request.get('/url',data)
 export const postapi = data => request.post('/url',data)
+
+## loading封装
+instance.interceptors.request.use(
+  function (config) {
+    // 在发送请求之前做些什么
+    //onloading
+    return config
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+instance.interceptors.response.use(
+  function (response) {
+    //offloading
+    const res = response.data
+    if(res.status != 200){
+      return Promise.reject(res.message)
+    }
+    return res
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
 
 # vant-ui
 移动端ui组件库

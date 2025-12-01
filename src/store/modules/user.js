@@ -1,7 +1,15 @@
+import { getstorage,setstorage } from "@/utils/storage"
+const key = 'key123'
+const def = '123'
 const state = {
-    user:'usermodule'
+    user:getstorage(key,def)
 }
-const mutations = {}
+const mutations = {
+  setuser(state,data){
+    state.user = data
+    setstorage(key,data)
+  }
+}
 const actions = {}
 const getters = {
   userup(state){

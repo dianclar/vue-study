@@ -9,6 +9,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
+    //onloading
     return config
   },
   function (error) {
@@ -21,6 +22,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function (response) {
     // 对响应数据做点什么
+    //offloading
     const res = response.data
     if(res.status != 200){
       return Promise.reject(res.message)
