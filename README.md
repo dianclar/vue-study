@@ -346,6 +346,7 @@ this.$router.push({name:'*',params:{*:*}})
 this.$router.back()
 
 ### 路由守卫
+
 const userhrmllist = ['*']
 router.beforeEach((to, from, next) => {
   if(userhrmllist.includes(to.path)){
@@ -515,6 +516,7 @@ Vuex.Store({
 通过...map*('*',['*'])映射
 
 ## vuex持久化
+
 src/utils目录下创建storage.js
 export const getstorage = (key) => {
   const data = localStorage.getItem(key)
@@ -541,21 +543,27 @@ const mutations = {
 }
 
 # json-server
+
 api接口服务工具
 
 ## 安装
+
 npm i json-server -g
 
 ## 配置
+
 将数据存入db/index.json
 
 ## 运行
+
 json-server index.json
 
 # 请求封装
+
 将所有请求函数从页面中抽离并封装为模块
 
 ## 安装axios
+
 npm i axios
 axios(
   {
@@ -571,6 +579,7 @@ axios(
 )
 
 ## 配置实例
+
 src/utils目录下创建request.js
 
 import axios from 'axios'
@@ -609,6 +618,7 @@ export const getapi = data => request.get('/url',data)
 export const postapi = data => request.post('/url',data)
 
 ## loading封装
+
 instance.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
@@ -634,6 +644,7 @@ instance.interceptors.response.use(
 )
 
 ## 请求头token
+
 instance.interceptors.request.use(
   function (config) {
     config.headers.Authorization = store.state.user.user.token
@@ -645,19 +656,24 @@ instance.interceptors.request.use(
 )
 
 # vant-ui
+
 移动端ui组件库
 文档：https://vant-ui.github.io/vant/v2/#/zh-CN/
 
 # 移动适配
+
 100vw为屏幕宽
 
 ## postcss
+
 自动将px转为vw
 
 ### 安装
+
 npm i postcss-px-to-viewport -D --legacy-peer-deps
 
 ### 配置
+
 根目录创建postcss.config.js
 
 module.exports={
@@ -668,3 +684,23 @@ module.exports={
   }
 }
 
+# mixins
+
+将vue组件实例的data methods等配置项混入到组件
+配置同名时优先组件内部配置
+src目录下创建mixins/*.js
+export default {
+  data(){
+    return{
+
+    }
+  },
+  methods: {
+
+  },
+}
+
+import mixins from './mixins/mixins';
+export default {
+  mixins:[mixins],
+}

@@ -12,7 +12,9 @@
 <script>
 import TestDocument from './components/TestDocument.vue';
 import asdf from './components/asdf.vue';
+import mixins from './mixins/mixins';
 export default {
+  mixins:[mixins],
   provide(){
     return{
       data:this.data
