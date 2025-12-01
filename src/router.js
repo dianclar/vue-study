@@ -15,7 +15,7 @@ const router = new VueRouter({
 const userhrmllist = ['*']
 router.beforeEach((to, from, next) => {
   if(userhrmllist.includes(to.path)){
-    if(store.state.user.user.token){
+    if(!store.state.user.user.token){
       next('/login')
     }
   }

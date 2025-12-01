@@ -1,3 +1,4 @@
+import store from '@/store/store'
 import axios from 'axios'
 
 const instance = axios.create({
@@ -10,6 +11,7 @@ instance.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
     //onloading
+    config.headers.Authorization = store.state.user.user.token
     return config
   },
   function (error) {

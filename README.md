@@ -345,6 +345,17 @@ this.$router.push({name:'*',params:{*:*}})
 
 this.$router.back()
 
+### 路由守卫
+const userhrmllist = ['*']
+router.beforeEach((to, from, next) => {
+  if(userhrmllist.includes(to.path)){
+    if(!store.state.user.user.token){
+      next('/login')
+    }
+  }
+  next()
+})
+
 ## keep-alive
 
 缓存组件，防止销毁，本身不会被渲染
@@ -616,6 +627,17 @@ instance.interceptors.response.use(
       return Promise.reject(res.message)
     }
     return res
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
+
+## 请求头token
+instance.interceptors.request.use(
+  function (config) {
+    config.headers.Authorization = store.state.user.user.token
+    return config
   },
   function (error) {
     return Promise.reject(error)
