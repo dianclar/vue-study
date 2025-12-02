@@ -20,6 +20,7 @@ npm run serve
 package.json.scripts查看修改启动命令
 
 ## 打包
+
 npm run build
 默认绝对路径，可配置vue.config.js改为相对路径
 module.exports = defineConfig({
@@ -373,6 +374,10 @@ router.beforeEach((to, from, next) => {
   next()
 })
 
+### 路由懒加载
+
+const * = () => import('@/views/*.vue')
+
 ## keep-alive
 
 缓存组件，防止销毁，本身不会被渲染
@@ -559,7 +564,7 @@ const mutations = {
   }
 }
 
-# json-server
+# json-server库
 
 api接口服务工具
 
@@ -672,16 +677,18 @@ instance.interceptors.request.use(
   }
 )
 
-# vant-ui
+# Ui
+
+## vant-ui库
 
 移动端ui组件库
 文档：https://vant-ui.github.io/vant/v2/#/zh-CN/
 
-# 移动适配
+## 移动适配
 
 100vw为屏幕宽
 
-## postcss
+## postcss库
 
 自动将px转为vw
 
