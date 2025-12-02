@@ -19,21 +19,37 @@ vue create *
 npm run serve
 package.json.scripts查看修改启动命令
 
-### vscode设置
+## 打包
+npm run build
+默认绝对路径，可配置vue.config.js改为相对路径
+module.exports = defineConfig({
+  publicPath:'./'
+})
+
+## vscode设置
 
 trigger on tab可以将输入的字母加数字内容按tab变成标签。
 
 # 项目结构
 
 VUE
+├── dist                # 打包完可以上线的项目目录#
 ├── node_modules        # 第三方依赖包存储目录（自动生成）
 ├── public              # 静态资源目录（无需编译处理）
 │   ├── favicon.ico     # 浏览器标签页图标
 │   └── index.html      # 主页面模板文件 ③
 ├── src                 # 核心源代码目录
+│   ├── api             # 接口目录#
 │   ├── assets          # 静态资源（图片/字体等）
 │   ├── components      # 通用组件库
+│   ├── mixins          # 混入目录#
+│   ├── router          # 路由目录#
+│   ├── store           # vuex状态目录#
 │   ├── utils           # 封装的工具函数
+│   │   ├── EventBus.js # 事件总线#
+│   │   ├── request.js  # 请求封装#
+│   │   └── storage.js  # vuex持久化工具#
+│   ├── views           # 页面组件目录#
 │   ├── App.vue         # 根组件文件 ②
 │   └── main.js         # 入口文件 ①
 ├── .gitignore          # Git版本控制忽略文件
@@ -508,12 +524,13 @@ Vuex.Store({
 })
 通过$store.state.*.*属性访问
 
-### module挂载映射
+### module命名空间
 
 默认挂载在全局
 通过namespaced:true开启命名空间，挂载于module
 通过$store.*['*/*']，$store.*.('*/*',*)访问
 通过...map*('*',['*'])映射
+通过commit/dispatch('*',null,{root:true})调用
 
 ## vuex持久化
 
@@ -687,7 +704,7 @@ module.exports={
 # mixins
 
 将vue组件实例的data methods等配置项混入到组件
-配置同名时优先组件内部配置
+配置同名时优先组件内部配置，生命周期都会执行
 src目录下创建mixins/*.js
 export default {
   data(){
