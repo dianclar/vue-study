@@ -728,3 +728,6 @@ import mixins from './mixins/mixins';
 export default {
   mixins:[mixins],
 }
+
+# vue3
+链接：https://github.com/dianclar/Vue3-Study

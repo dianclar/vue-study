@@ -3,6 +3,7 @@ import ruok from '@/views/ruok.vue'
 import two from './views/two.vue'
 import Vue from 'vue'
 import store from './store/store'
+
 const music = () => import('@/views/music.vue')
 Vue.use(VueRouter)
 const router = new VueRouter({
