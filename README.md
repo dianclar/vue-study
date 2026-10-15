@@ -161,19 +161,6 @@ index.html
 组件名使用多单词大驼峰命名法
 组件的 data 是一个函数，为了保证组件实例的 data 独一份。
 
-### 取消强制多单词
-
-在 package.json 中配置
-
-```
-// package.json
-"eslintConfig": {
-  "rules": {
-    "vue/multi-word-component-names": 0
-  }
-}
-```
-
 ### 局部样式
 
 使用 scoped 关键字让样式只作用当前组件 `<style scoped>`
@@ -573,13 +560,13 @@ node_modules/
 ```
 
 ```
-// .eslintrc.js
+// .eslintrc.cjs
 module.exports = {
   root: true, // 设为根配置
   parserOptions: {
     ecmaVersion: 'latest', // 最新 ES+ 语法规范
   },
-  extends: ['eslint:recommended', 'plugin:vue/essential', 'prettier'], // 推荐规则集，末尾优先
+  extends: ['eslint:recommended', 'plugin:vue/essential', 'plugin:prettier/recommended'], // 推荐规则集，末尾优先，需要安装对应包
   rules: { // 配置规则
     'no-unused-vars': 'warn', // 未使用变量仅警告
     'no-empty': 'warn', // 空代码块仅警告
