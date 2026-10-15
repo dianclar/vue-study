@@ -539,7 +539,7 @@ router.beforeEach((to, from, next) => {
 
 ```
 # cmd
-npm install eslint --save-dev
+npm install eslint@8 --save-dev
 npx eslint --init # 可选，生成配置文件
 npx eslint . # 检查
 npx eslint . --fix # 自动修复
@@ -560,18 +560,26 @@ node_modules/
 ```
 
 ```
-// .eslintrc.cjs
+// .eslintrc.js
 module.exports = {
-  root: true, // 设为根配置
-  parserOptions: {
-    ecmaVersion: 'latest', // 最新 ES+ 语法规范
+  root: true, // 设为根目录
+  env: {
+    node: true, // node 环境
   },
-  extends: ['eslint:recommended', 'plugin:vue/essential', 'plugin:prettier/recommended'], // 推荐规则集，末尾优先，需要安装对应包
+  parserOptions: {
+    ecmaVersion: 'latest', // 最新 ES+ 规范
+  },
+  extends: [ // 规则集，需安装合适版本
+    'eslint:recommended', // eslint 推荐规范
+    'plugin:vue/essential', // vue 推荐规范
+    'plugin:prettier/recommended',  // prettier 推荐规范
+  ],
   rules: { // 配置规则
     'no-unused-vars': 'warn', // 未使用变量仅警告
     'no-empty': 'warn', // 空代码块仅警告
   },
 }
+
 ```
 
 ## prettier
