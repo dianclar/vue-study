@@ -1,3 +1,3 @@
 <template>
-    <div>{{$route.query.data}}|{{ $route.params.music }}</div>
+  <div>{{ $route.query.data }}|{{ $route.params.music }}</div>
 </template>

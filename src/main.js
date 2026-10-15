@@ -18,5 +18,5 @@ new Vue({
   //  return createElement(App)
   //}
   router,
-  store
+  store,
 }).$mount('#app')

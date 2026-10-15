@@ -4,15 +4,15 @@ import user from './modules/user'
 Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
-    data: 123
+    data: 123,
   },
   getters: {
     eyedata(state) {
       return state.data + 1
-    }
+    },
   },
   modules: {
-    user
-  }
+    user,
+  },
 })
 export default store

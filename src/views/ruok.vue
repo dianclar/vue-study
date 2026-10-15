@@ -1,3 +1,3 @@
 <template>
-    <div>ruok<Router-view></Router-view></div>
+  <div>ruok<Router-view></Router-view></div>
 </template>

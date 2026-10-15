@@ -1,3 +1,3 @@
 <template>
-    <div @click="$router.back()">two</div>
+  <div @click="$router.back()">two</div>
 </template>

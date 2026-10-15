@@ -8,17 +8,23 @@ const music = () => import('@/views/music.vue')
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes: [
+    { path: '/' },
     { path: '/music/:music?', component: music },
-    { path: '/ruok', component: ruok, redirect: '/two', children: [{ path: '/two', component: two }] }
-  ]
+    {
+      path: '/ruok',
+      component: ruok,
+      redirect: '/two',
+      children: [{ path: '/two', component: two }],
+    },
+    { path: '*', component: () => import('./views/nopath.vue') },
+  ],
 })
 
-const userhrmllist = ['*']
+const nologinlist = ['/login']
+const token = true || !store.state.user.user.token
 router.beforeEach((to, from, next) => {
-  if(userhrmllist.includes(to.path)){
-    if(!store.state.user.user.token){
-      next('/login')
-    }
+  if (!nologinlist.includes(to.path) && !token) {
+    next('/login')
   }
   next()
 })

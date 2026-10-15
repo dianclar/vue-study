@@ -1,10 +1,8 @@
 export default {
-  data(){
-    return{
-      mixindata:'data'
+  data() {
+    return {
+      mixindata: 'data',
     }
   },
-  methods: {
-
-  },
+  methods: {},
 }
