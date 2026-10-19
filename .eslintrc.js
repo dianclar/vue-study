@@ -15,4 +15,12 @@ module.exports = {
     'no-unused-vars': 'warn',
     'no-empty': 'warn',
   },
+  globals: {
+    //
+  },
+  overrides: [
+    {
+      files: ['*.vue'],
+    },
+  ],
 }
